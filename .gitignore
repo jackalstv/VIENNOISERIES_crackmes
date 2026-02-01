@@ -1,14 +1,2 @@
-# Dossiers
-Reverse Engineering/
-
-# Fichiers objets
 *.o
-
-# Exécutables dans les dossiers crackme
-crackme*/crackme*
-crackme[0-9]*
-
-# Temporaires
-*.tmp
-*.swp
-*~
+yesyoucan
