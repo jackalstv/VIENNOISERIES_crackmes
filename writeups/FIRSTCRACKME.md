@@ -1,0 +1,4 @@
+Identification des symboles Commande utilisée : strings -d FIRSTCRACKME Résultat : on identifie les labels encoded_flag, xor_key, decoded_flag, decode_loop, compare_loop ainsi que les messages Good Job! et Bad Password!. Le binaire décode une flag encodée avant de la comparer à l'input.
+Analyse du binaire avec objdump objdump -d FIRSTCRACKME Le programme décode d'abord la flag en mémoire via une boucle XOR : encoded_flag[i] XOR xor_key → decoded_flag. Ensuite il lit l'entrée utilisateur via stdin et compare byte par byte avec la flag décodée sur 16 caractères.
+Extraction de la flag avec gdb Breakpoint posé sur compare_loop à 0x401071. Au moment de la comparaison, rdi pointe sur la flag décodée en mémoire à 0x40204c. Commande : x/s 0x40204c Résultat : 4SI5_Cr4ckM3_P4S
+Validation En exécutant le programme avec ce mot de passe, le message de succès s'affiche, confirmant que la vérification est validée.
