@@ -1,0 +1,3 @@
+Identification des symboles Commande utilisée : strings -d Harkonnen Résultat : on identifie directement le flag stocké en clair Giedi_Prime_4evR au label giedi_prime à 0x402000. Le binaire nous donne même un indice : Un simple 'strings' suffit a lire dans ses pensees.
+Analyse du binaire avec objdump objdump -d Harkonnen Le programme affiche un prompt, lit l'entrée via stdin dans input_buf à 0x4020d4. Il vérifie que la longueur est exactement 17 bytes (16 chars + newline). Ensuite il compare directement l'input avec le flag à 0x402000 via l'instruction repz cmpsb sur 16 bytes.
+Extraction du flag Le flag est directement lisible via strings à l'adresse 0x402000 : Giedi_Prime_4evR
