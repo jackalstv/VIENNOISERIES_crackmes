@@ -1,0 +1,4 @@
+Identification des symboles Commande utilisée : strings -d 'Birth of the URSSAF' Résultat : pas de flag en clair, uniquement Good Job! et Bad Password!. Le binaire est strippé et sans symboles visibles, il faudra analyser le code.
+Analyse du binaire avec objdump objdump -d 'Birth of the URSSAF' Le programme commence par un fork (syscall 0x65). Le processus enfant lit l'entrée via stdin dans un buffer à 0x402028. Il vérifie que la longueur est exactement 16 caractères. Ensuite il applique input[i] XOR 0x42 et compare avec les bytes stockés à 0x402018 sur 16 itérations.
+Extraction du flag avec gdb Breakpoint posé avant la boucle de comparaison. Dump des 16 bytes à 0x402018 : 0x12 0x2c 0x0b 0x2b 0x1a 0x36 0x07 0x06 0x15 0x36 0x04 0x01 0x0a 0x35 0x2a 0x25 XOR 0x42 sur chaque byte donne le flag : PnIiXtEDWtFCHwhg
+Validation En exécutant le programme avec ce mot de passe
