@@ -1,0 +1,4 @@
+Identification des symboles Commande utilisée : strings -d tudebutes? Résultat : on identifie les labels flag_enc, flag_key, decoded, dec_loop, cmp_loop ainsi que les messages Good Job! et Bad Flag !. Le binaire décode une flag XOR avant de la comparer à l'input.
+Analyse du binaire avec objdump objdump -d tudebutes? Le programme lit l'entrée via stdin dans buffer à 0x403026. Il vérifie que la longueur est exactement 16 caractères. Ensuite il décode la flag : flag_enc[i] XOR flag_key → decoded[i] sur 16 itérations. Enfin il compare byte par byte l'input avec la flag décodée à 0x403066.
+Extraction de la flag avec gdb Breakpoint posé sur cmp_loop à 0x40106a. Au moment de la comparaison, r9 pointe sur la flag décodée en mémoire à 0x403066. Commande : x/s 0x403066 Résultat : 92I_34SYM0DD3BUT
+Validation En exécutant le programme avec ce mot de passe, le message de succès s'affiche, confirmant que la vérification est validée.
