@@ -1,0 +1,4 @@
+Identification des symboles Commande utilisée : strings -d Fait_Toi_Confiance Résultat : on identifie le label flag à 0x402000 ainsi que les messages Good Job! et Bad Password!. On remarque immédiatement la string U2FubmR5Y29vbA== qui est du base64. Décodée : Sanndycool.
+Analyse du binaire avec objdump objdump -d Fait_Toi_Confiance Le programme lit l'entrée via stdin dans input à 0x402028. Il vérifie que la longueur est exactement 17 bytes (16 chars + newline). Ensuite il compare byte par byte l'input avec la valeur stockée à 0x402000 sur 16 itérations via check_loop.
+Extraction du flag avec gdb Breakpoint posé sur check_loop à 0x40102a. rdi pointe sur le flag à 0x402000. Commande : x/s 0x402000 Résultat : U2FubmR5Y29vbA== — le flag est la string base64 elle-même stockée en clair, pas sa valeur décodée.
+Validation En exécutant le programme avec ce mot de passe, le message de succès s'affiche, confirmant que la vérification est validée.
