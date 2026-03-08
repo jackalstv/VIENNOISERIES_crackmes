@@ -1,0 +1,3 @@
+Commande utilisée : strings crackmooo Résultat : on trouve trois chaînes qui ressemblent à des flags (DECOY_FL4G_1337!, Y0U_W1SH_1T_W4S, TRY_H4RD3R_N00B!) ainsi que Good Job! et Bad Password!. Ce sont des leurres, le vrai flag n'est pas dans les strings.
+
+Commande : objdump -d -M intel crackmooo Le buffer d'entrée est à 0x40204c, la longueur doit être exactement 16 caractères. Le binaire vérifie chaque caractère un par un via un enchaînement de jumps dans tous les sens. Chaque check applique une opération (xor, addition, shift...) et compare à une constante. On remarque aussi deux fausses instructions (call à 0x401063 et jmp à 0x4010aa) qui pointent vers des adresses inexistantes pour tromper objdump, le vrai code se trouve un byte plus loin à l'intérieur de l'opcode.
