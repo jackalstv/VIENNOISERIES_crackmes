@@ -1,0 +1,7 @@
+Le flag est découpé en 4 blocs de 4 octets dans .data (part1_xor à part4_xor), tous XORés par 0x5a. L'input (16 chars) est comparé DWORD par DWORD après déchiffrement.
+
+data = [0x29,0x3f,0x31,0x35, 0x34,0x29,0x3b,0x34,
+        0x35,0x2f,0x31,0x3b, 0x3c,0x3f,0x29,0x3b]
+print(''.join(chr(b ^ 0x5a) for b in data))
+
+flag : sekonsanoukafesa

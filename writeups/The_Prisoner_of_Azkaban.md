@@ -1,0 +1,1 @@
+Le tableau encrypted_answer à 0x4032E6 contient le mot de passe déjà chiffré par encrypt_advanced. En inversant la chaîne de transformations (XOR 0xAB → ROL 3 → SUB 0x2A → ROR 5 → ADD 0x55 → XOR 0xCD → MUL 3 → XOR index), on retrouve le plaintext. Les 4 hashs et le canary/memory check passent tous. Le fake_flag "FLAG{W1NG4RD1UM_L3V10S4}" est un piège.
